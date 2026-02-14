@@ -7,6 +7,7 @@ import {
   buildOptimizedResume,
   extractKeywords,
   generateHrInterview,
+  generateStudentResume,
   generateTechnicalInterview,
   scoreResume
 } from "./src/engine.js";
@@ -73,6 +74,12 @@ createServer(async (req, res) => {
     if (req.url === "/api/score" && req.method === "POST") {
       const body = await parseBody(req);
       return sendJson(res, 200, scoreResume(body));
+    }
+
+
+    if (req.url === "/api/student-resume" && req.method === "POST") {
+      const body = await parseBody(req);
+      return sendJson(res, 200, { resumeText: generateStudentResume(body) });
     }
 
     if (req.url === "/api/interview/technical" && req.method === "POST") {

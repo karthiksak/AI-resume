@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildOptimizedResume, extractKeywords, scoreResume } from '../src/engine.js';
+import { buildOptimizedResume, extractKeywords, generateStudentResume, scoreResume } from '../src/engine.js';
 
 test('extractKeywords returns technical keywords', () => {
   const result = extractKeywords('Java Spring Boot Microservices Java REST API SQL');
@@ -30,4 +30,11 @@ test('buildOptimizedResume generates linkedin extras', () => {
   });
   assert.ok(result.headline);
   assert.ok(result.about);
+});
+
+test('generateStudentResume includes student sections', () => {
+  const result = generateStudentResume({ fullName: 'Ravi Kumar', role: 'Java Developer' });
+  assert.ok(result.includes('RAVI KUMAR'));
+  assert.ok(result.includes('CAREER OBJECTIVE'));
+  assert.ok(result.includes('TARGET ROLE'));
 });

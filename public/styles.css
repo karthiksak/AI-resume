@@ -38,6 +38,7 @@ label {
   flex-direction: column;
   gap: 0.35rem;
   font-size: 0.94rem;
+  margin-top: 0.6rem;
 }
 
 input, select, textarea, button {
@@ -55,13 +56,17 @@ button {
   margin-top: 0.8rem;
 }
 
+button.secondary {
+  background: #0f172a;
+}
+
 pre {
   white-space: pre-wrap;
   background: #0f172a;
   color: #e2e8f0;
   padding: 0.8rem;
   border-radius: 8px;
-  max-height: 440px;
+  min-height: 200px;
   overflow: auto;
 }
 

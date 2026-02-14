@@ -141,11 +141,8 @@ function buildOptimizedResume({ platform, resumeText, level, role, keywords, loc
   const keywordLine = [...new Set([...(keywords || []), ...roleKeywords])].slice(0, 18).join(", ");
 
   const summary = `Professional Summary\n${level} ${role} candidate based in ${location}, optimized for ${rules.name} hiring workflows. Focused on delivery, stakeholder communication, and practical execution for Indian IT teams.`;
-
   const skills = `Technical Skills\n${keywordLine || "Java, SQL, API Testing, Linux, Jira, Git"}`;
-
   const exp = `Experience Highlights\n- Built and maintained production workflows with measurable quality and performance improvements.\n- Collaborated with QA, development, and support teams to deliver releases in agile sprints.\n- Documented root-cause analysis and corrective actions for recurring production issues.`;
-
   const projects = `Projects\n- Project 1: Implemented role-relevant module using ${roleKeywords[0] ?? "core technologies"}; improved turnaround time and defect stability.\n- Project 2: Enhanced reliability through monitoring, test coverage, and process automation.`;
 
   const extras = platform === "linkedin"
@@ -164,6 +161,56 @@ function buildOptimizedResume({ platform, resumeText, level, role, keywords, loc
     optimizedText,
     ...extras
   };
+}
+
+function generateStudentResume(input = {}) {
+  const {
+    fullName = "Your Name",
+    email = "email@example.com",
+    phone = "+91-XXXXXXXXXX",
+    location = "Chennai",
+    role = "Software Engineer",
+    careerObjective = "Motivated student seeking an entry-level IT role to apply technical skills and contribute to team success.",
+    education = "B.E. Computer Science, Anna University (2025) | CGPA: 8.2/10",
+    skills = "Java, SQL, HTML, CSS, JavaScript, Git, Problem Solving",
+    project1 = "Student Management System using Java and MySQL; built CRUD modules and reduced manual effort.",
+    project2 = "Bug tracking dashboard using HTML/CSS/JS; improved defect visibility and follow-up.",
+    internship = "Intern - QA Trainee, Chennai startup (2 months): wrote test cases, tested APIs, reported defects in Jira.",
+    certifications = "NPTEL Java Programming, HackerRank SQL Basic"
+  } = input;
+
+  return [
+    `${fullName.toUpperCase()}`,
+    `${phone} | ${email} | ${location}`,
+    "",
+    "CAREER OBJECTIVE",
+    careerObjective,
+    "",
+    "TARGET ROLE",
+    role,
+    "",
+    "EDUCATION",
+    `- ${education}`,
+    "",
+    "TECHNICAL SKILLS",
+    `- ${skills}`,
+    "",
+    "ACADEMIC / PERSONAL PROJECTS",
+    `- ${project1}`,
+    `- ${project2}`,
+    "",
+    "INTERNSHIP / TRAINING",
+    `- ${internship}`,
+    "",
+    "CERTIFICATIONS",
+    `- ${certifications}`,
+    "",
+    "STRENGTHS",
+    "- Quick learner, team collaboration, communication, ownership",
+    "",
+    "DECLARATION",
+    "I hereby declare that the information provided is true to the best of my knowledge."
+  ].join("\n");
 }
 
 function generateTechnicalInterview({ role, level, answer }) {
@@ -247,6 +294,7 @@ export {
   buildOptimizedResume,
   extractKeywords,
   generateHrInterview,
+  generateStudentResume,
   generateTechnicalInterview,
   scoreResume
 };
