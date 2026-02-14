@@ -1,0 +1,14 @@
+{
+  "name": "ai-resume-interview-coach-chennai",
+  "version": "1.0.0",
+  "description": "AI Resume & Interview Coach – Chennai IT Jobs",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
