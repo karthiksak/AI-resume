@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Student Resume Builder – Chennai IT Jobs</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Free Student Resume Builder – Chennai IT Jobs</h1>
+      <p>Create a fresher/student resume and download it in Word or PDF for free.</p>
+    </header>
+
+    <section class="card">
+      <h2>Student Details</h2>
+      <div class="grid">
+        <label>Full Name<input id="fullName" placeholder="Ravi Kumar" /></label>
+        <label>Email<input id="email" placeholder="ravi@gmail.com" /></label>
+        <label>Phone<input id="phone" placeholder="+91-9876543210" /></label>
+        <label>Location<input id="location" value="Chennai" /></label>
+        <label>Target Role
+          <select id="role">
+            <option>Java</option>
+            <option>QA</option>
+            <option>Support</option>
+            <option>Data</option>
+          </select>
+        </label>
+      </div>
+
+      <label>Career Objective<textarea id="careerObjective" rows="3" placeholder="Motivated fresher..."></textarea></label>
+      <label>Education<textarea id="education" rows="2" placeholder="B.E. CSE, Anna University (2025), CGPA 8.2"></textarea></label>
+      <label>Skills<textarea id="skills" rows="2" placeholder="Java, SQL, HTML, CSS, JavaScript"></textarea></label>
+      <label>Project 1<textarea id="project1" rows="2" placeholder="Built ..."></textarea></label>
+      <label>Project 2<textarea id="project2" rows="2" placeholder="Built ..."></textarea></label>
+      <label>Internship / Training<textarea id="internship" rows="2" placeholder="Intern at ..."></textarea></label>
+      <label>Certifications<textarea id="certifications" rows="2" placeholder="NPTEL..., HackerRank..."></textarea></label>
+
+      <div class="actions">
+        <button id="generateBtn">Generate Resume</button>
+        <button id="downloadWordBtn" class="secondary">Download Word (.doc)</button>
+        <button id="downloadPdfBtn" class="secondary">Download PDF (.pdf)</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Generated Resume</h2>
+      <pre id="resumeOutput">Fill details and click "Generate Resume".</pre>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
