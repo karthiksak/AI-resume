@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume & Interview Coach – Advanced Student Edition</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>AI Resume & Interview Coach – Advanced Student Edition</h1>
+      <p>Build platform-optimized resumes for Naukri, LinkedIn, and ATS with recruiter-style scoring. 100% free.</p>
+    </header>
+
+    <section class="card">
+      <h2>Step 1: Student Profile</h2>
+      <div class="grid">
+        <label>Full Name<input id="fullName" placeholder="Ravi Kumar" /></label>
+        <label>Email<input id="email" placeholder="ravi@gmail.com" /></label>
+        <label>Phone<input id="phone" placeholder="+91-9876543210" /></label>
+        <label>Location<input id="location" value="Chennai" /></label>
+        <label>Target Role
+          <select id="role">
+            <option value="java">Java</option>
+            <option value="qa">QA</option>
+            <option value="support">Support</option>
+            <option value="data">Data</option>
+          </select>
+        </label>
+      </div>
+      <label>Career Objective<textarea id="careerObjective" rows="2"></textarea></label>
+      <label>Education<textarea id="education" rows="2"></textarea></label>
+      <label>Skills<textarea id="skills" rows="2"></textarea></label>
+      <label>Project 1<textarea id="project1" rows="2"></textarea></label>
+      <label>Project 2<textarea id="project2" rows="2"></textarea></label>
+      <label>Internship / Training<textarea id="internship" rows="2"></textarea></label>
+      <label>Certifications<textarea id="certifications" rows="2"></textarea></label>
+      <label>Achievements<textarea id="achievements" rows="2"></textarea></label>
+      <label>Target JD / Keywords<textarea id="jobDescription" rows="4" placeholder="Paste job description for best keyword matching"></textarea></label>
+
+      <div class="actions">
+        <button id="generatePackBtn">Generate Advanced Resume Pack</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Step 2: Platform Output</h2>
+      <div class="actions">
+        <button class="secondary" data-view="base">Base Resume</button>
+        <button class="secondary" data-view="naukri">Naukri Version</button>
+        <button class="secondary" data-view="linkedin">LinkedIn Version</button>
+        <button class="secondary" data-view="ats">ATS Version</button>
+      </div>
+      <pre id="resumeOutput">Generate the resume pack to view optimized outputs.</pre>
+      <div class="actions">
+        <button id="downloadWordBtn" class="secondary">Download Word (.doc)</button>
+        <button id="downloadPdfBtn" class="secondary">Download PDF (.pdf)</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Step 3: Scorecard + Keyword Intelligence</h2>
+      <pre id="insightsOutput">Scorecard and keyword insights will appear here.</pre>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
