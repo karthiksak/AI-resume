@@ -3,12 +3,9 @@ import { readFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import {
-  CHENNAI_HIRING_TRENDS,
-  buildOptimizedResume,
+  buildAdvancedResumePack,
   extractKeywords,
-  generateHrInterview,
   generateStudentResume,
-  generateTechnicalInterview,
   scoreResume
 } from "./src/engine.js";
 
@@ -20,6 +17,15 @@ const port = process.env.PORT || 3000;
 function sendJson(res, status, payload) {
   res.writeHead(status, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" });
   res.end(JSON.stringify(payload));
+}
+
+function sendTextDownload(res, filename, text, mime) {
+  res.writeHead(200, {
+    "Content-Type": mime,
+    "Content-Disposition": `attachment; filename=\"${filename}\"`,
+    "Access-Control-Allow-Origin": "*"
+  });
+  res.end(text);
 }
 
 async function parseBody(req) {
@@ -48,27 +54,9 @@ createServer(async (req, res) => {
   try {
     if (req.url === "/api/health") return sendJson(res, 200, { status: "ok" });
 
-    if (req.url === "/api/trends" && req.method === "GET") {
-      return sendJson(res, 200, CHENNAI_HIRING_TRENDS);
-    }
-
     if (req.url === "/api/keywords" && req.method === "POST") {
       const body = await parseBody(req);
       return sendJson(res, 200, extractKeywords(body.jobDescription));
-    }
-
-    if (req.url === "/api/optimize" && req.method === "POST") {
-      const body = await parseBody(req);
-      const keywords = extractKeywords(body.jobDescription).technicalKeywords;
-      const optimized = buildOptimizedResume({
-        platform: body.platform,
-        resumeText: body.resumeText,
-        level: body.level,
-        role: body.role,
-        keywords,
-        location: body.location || "Chennai"
-      });
-      return sendJson(res, 200, optimized);
     }
 
     if (req.url === "/api/score" && req.method === "POST") {
@@ -76,20 +64,20 @@ createServer(async (req, res) => {
       return sendJson(res, 200, scoreResume(body));
     }
 
-
     if (req.url === "/api/student-resume" && req.method === "POST") {
       const body = await parseBody(req);
       return sendJson(res, 200, { resumeText: generateStudentResume(body) });
     }
 
-    if (req.url === "/api/interview/technical" && req.method === "POST") {
+    if (req.url === "/api/advanced-resume-pack" && req.method === "POST") {
       const body = await parseBody(req);
-      return sendJson(res, 200, generateTechnicalInterview(body));
+      return sendJson(res, 200, buildAdvancedResumePack(body));
     }
 
-    if (req.url === "/api/interview/hr" && req.method === "POST") {
+    if (req.url === "/api/export/doc" && req.method === "POST") {
       const body = await parseBody(req);
-      return sendJson(res, 200, generateHrInterview(body.answers));
+      const htmlDoc = `<!doctype html><html><body><pre style="font-family:Calibri,Arial,sans-serif;white-space:pre-wrap;">${(body.text || "").replace(/</g, "&lt;")}</pre></body></html>`;
+      return sendTextDownload(res, body.filename || "resume.doc", htmlDoc, "application/msword");
     }
 
     if (req.url === "/" || req.url === "/index.html") {
@@ -109,5 +97,5 @@ createServer(async (req, res) => {
     sendJson(res, 500, { error: "Server error", details: error.message });
   }
 }).listen(port, () => {
-  console.log(`AI Resume & Interview Coach running on http://localhost:${port}`);
+  console.log(`Advanced Resume Coach running on http://localhost:${port}`);
 });
